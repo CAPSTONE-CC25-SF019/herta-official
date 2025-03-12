@@ -9,3 +9,9 @@
   --color-herta-400: #037ffa;
   --color-herta-500: #1a237e;
 }
+
+@layer base {
+  body {
+    background: var(--color-herta-100);
+  }
+}
