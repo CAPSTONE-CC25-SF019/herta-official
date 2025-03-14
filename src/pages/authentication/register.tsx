@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import InputText from "../../components/ui/input-text";
-import Button from "../../components/ui/button";
+import InputText from "../../components/ui/particles/input-text";
+import Button from "../../components/ui/particles/button";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 
 export default function RegisterPage() {
