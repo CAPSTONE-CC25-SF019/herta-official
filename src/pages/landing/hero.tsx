@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#037FFA] opacity-50"></div>
       <div className="flex flex-col items-center justify-center z-10 flex-grow">
-        <h1 className="text-white text-9xl font-bold">HERTA</h1>
+        <h1 className="text-white text-8xl sm:text-9xl font-bold">HERTA</h1>
         <p className="text-white text-lg mt-4">Health Prediction & Analytic</p>
         <div className="mt-8 flex space-x-4">
         <Button
