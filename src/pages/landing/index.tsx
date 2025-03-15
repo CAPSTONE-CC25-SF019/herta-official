@@ -6,7 +6,7 @@ export default function LandingPage() {
     <>
       <Hero />
       <HomeSection />
-      <section className="bg-herta-200/20 h-svh"></section>
+      <section className="bg-herta-200 h-svh"></section>
     </>
   );
 }
