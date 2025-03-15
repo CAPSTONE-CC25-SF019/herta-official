@@ -15,3 +15,10 @@
     background: var(--color-herta-100);
   }
 }
+
+@layer utilities {
+  .bg-dot-pattern {
+    background-image: radial-gradient(rgb(58, 137, 245) 3px, #0006 0px);
+    background-size: 50px 50px;
+  }
+}
