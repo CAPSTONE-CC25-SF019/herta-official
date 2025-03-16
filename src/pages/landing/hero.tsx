@@ -4,9 +4,9 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline';
 export default function Hero() {
     return (
     <section className="relative w-full h-screen overflow-y-auto">
-    <div className="h-screen w-full fixed top-0 left-0 -z-2 flex flex-col items-center justify-between bg-gradient-to-b from-herta-200 to-herta-400 overflow-hidden">
-      <div className="absolute inset-0 bg-dot-pattern opacity-20 -z-1"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-herta-400 opacity-50 -z-1"></div>
+    <div className="h-screen w-full fixed top-0 left-0 z-0 flex flex-col items-center justify-between bg-gradient-to-b from-herta-200 to-herta-400 overflow-hidden">
+      <div className="absolute inset-0 bg-dot-pattern opacity-20 -z-2"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-herta-400 opacity-50 -z-2"></div>
       <div className="flex flex-col items-center justify-center flex-grow">
         <h1 className="text-white text-8xl sm:text-9xl font-bold">HERTA</h1>
         <p className="text-white text-lg mt-4">Health Prediction & Analytic</p>
