@@ -8,6 +8,10 @@
   --color-herta-300: #02a9f4;
   --color-herta-400: #037ffa;
   --color-herta-500: #1a237e;
+
+  --color-herta-gray: #00000060;
+
+  --color-herta-bg: #3ea1f320;
 }
 
 @layer base {
