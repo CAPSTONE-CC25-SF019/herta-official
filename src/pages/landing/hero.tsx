@@ -15,6 +15,7 @@ export default function Hero() {
           variant="none"
           type="hashlink"
           to="#how-it-work"
+          smooth={true}
           className="border border-white text-white px-6 py-2 rounded-lg hover:bg-white hover:text-herta-400 transition"
         >
           How It Work
