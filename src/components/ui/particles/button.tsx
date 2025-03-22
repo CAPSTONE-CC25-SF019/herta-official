@@ -1,6 +1,7 @@
 import React from "react";
 import { ButtonVariant } from "../../../types";
 import { Link, LinkProps } from "react-router-dom";
+import { HashLink, HashLinkProps } from "react-router-hash-link";
 
 type ButtonPropsBase = {
   variant?: ButtonVariant;
@@ -18,7 +19,14 @@ type ButtonPropsAsLink = ButtonPropsBase &
     to: string;
   };
 
-type PropsButton = ButtonPropsAsButton | ButtonPropsAsLink;
+type ButtonPropsAsHashLink = ButtonPropsBase &
+  HashLinkProps & {
+    type: "hashlink";
+    to: string;
+    smooth?: boolean;
+  };
+
+type PropsButton = ButtonPropsAsButton | ButtonPropsAsLink | ButtonPropsAsHashLink;
 
 export default function Button({
   type = "button",
@@ -29,14 +37,25 @@ export default function Button({
 }: PropsButton) {
   const styles =
     "w-fit cursor-pointer rounded-md px-5 py-2 text-sm disabled:cursor-progress disabled:brightness-80";
-  let color = "bg-gradient-to-tr from-herta-300 to-herta-400 text-white";
   
+  let color = "bg-gradient-to-tr from-herta-300 to-herta-400 text-white";
   if (variant === "none") color = "";
   if (variant === "primary")
     color = "bg-gradient-to-tr from-herta-300 to-herta-400 text-white";
   if (variant === "secondary") color = "bg-zinc-200 text-black/80 shadow-sm";
 
-  if (type === "link")
+  if (type === "hashlink") {
+    return (
+      <HashLink
+        {...(props as HashLinkProps)}
+        className={`${styles} ${color} ${className} inline-block`}
+      >
+        {children}
+      </HashLink>
+    );
+  }
+
+  if (type === "link") {
     return (
       <Link
         {...(props as LinkProps)}
@@ -45,7 +64,8 @@ export default function Button({
         {children}
       </Link>
     );
-
+  }
+  
   return (
     <button
       {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}

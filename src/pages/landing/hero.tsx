@@ -13,8 +13,8 @@ export default function Hero() {
         <div className="mt-8 flex space-x-4">
         <Button
           variant="none"
-          type="link"
-          to="#howitwork"
+          type="hashlink"
+          to="#how-it-work"
           className="border border-white text-white px-6 py-2 rounded-lg hover:bg-white hover:text-herta-400 transition"
         >
           How It Work

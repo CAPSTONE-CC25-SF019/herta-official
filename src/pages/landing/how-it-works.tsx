@@ -58,7 +58,7 @@ const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <div className="relative bg-herta-bg flex min-h-screen flex-col items-center justify-center p-4 md:p-8">
+    <section id="how-it-work" className="relative bg-herta-bg flex min-h-screen flex-col items-center justify-center p-4 md:p-8">
       <div className="w-full max-w-6xl">
         <div className="relative mb-8 md:mb-12">
           {/* Desktop */}
@@ -125,7 +125,7 @@ const HowItWorks: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

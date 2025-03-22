@@ -1,2 +1,2 @@
 export type ButtonVariant = "primary" | "secondary" | "none";
-export type ButtonType = "button" | "link";
+export type ButtonType = "button" | "link" | "hashlink";
