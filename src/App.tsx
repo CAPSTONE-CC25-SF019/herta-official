@@ -4,6 +4,7 @@ import RegisterPage from "./pages/authentication/register";
 import LandingPage from "./pages/landing";
 import DiseasePage from "./pages/disease";
 import HistoryPage from "./pages/history";
+import ProfilePage from "./pages/authentication/profile";
 
 function App() {
   // TODO: Implement Layout
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/disease" element={<DiseasePage />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
   );
