@@ -7,9 +7,9 @@ import GradientRadial from "../../components/ui/particles/gradient-radial";
 export default function HomeSection() {
   return (
     <section className="bg-herta-100 relative max-w-screen overflow-hidden">
-      <div className="mx-auto flex h-[69rem] w-full max-w-[600px] flex-col border-x-[1px] border-black/10 lg:h-[58rem] lg:border-0">
+      <div className="mx-auto flex h-[69rem] w-full max-w-[600px] flex-col lg:h-[58rem]">
         <div className="relative mx-auto h-full w-full max-w-[600px]">
-          <div className="absolute top-0 mt-1 right-0 bottom-0 left-0 w-full space-y-2 p-4 lg:hidden">
+          <div className="absolute top-0 right-0 bottom-0 left-0 mt-1 w-full space-y-2 p-4 lg:hidden">
             <CardFeature
               title="AI Health Check"
               description="Get instant health assessments with our trusted AI technology. Try it

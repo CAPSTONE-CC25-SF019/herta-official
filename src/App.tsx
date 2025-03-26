@@ -5,6 +5,7 @@ import LandingPage from "./pages/landing";
 import DiseasePage from "./pages/disease";
 import HistoryPage from "./pages/history";
 import ProfilePage from "./pages/authentication/profile";
+import NotFound from "./pages/not-found";
 
 function App() {
   // TODO: Implement Layout
@@ -18,6 +19,7 @@ function App() {
         <Route path="/disease" element={<DiseasePage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
