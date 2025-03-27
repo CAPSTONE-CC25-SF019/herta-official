@@ -72,14 +72,14 @@ const HowItWorks: React.FC = () => {
             How It Work
           </h2>
           <div className="bg-herta-400 mx-auto mb-6 h-1 w-20"></div>
-          <p className="mx-auto max-w-2xl text-lg text-gray-700 md:text-xl">
+          <p className="mx-auto max-w-2xl text-md text-gray-700 md:text-xl">
             Follow these simple steps to start your healthcare journey with us
           </p>
         </div>
 
         <div className="relative mb-8 md:mb-12">
           {/* Desktop */}
-          <div className="relative mb-8 hidden md:flex md:justify-center md:px-12">
+          <div className="relative mb-8 hidden md:flex md:justify-center md:px-28">
             <div className="flex w-full max-w-md items-center justify-between px-8 md:max-w-[45rem]">
               {steps.map((step, index) => (
                 <React.Fragment key={step.id}>
@@ -125,7 +125,7 @@ const HowItWorks: React.FC = () => {
               {steps.map((step) => (
                 <div
                   key={step.id}
-                  className="animate-fadeIn opacity-0"
+                  className="animate-fadeIn opacity-0 w-full max-w-56"
                   style={{
                     animationDelay: `${step.id * 0.3}s`,
                     animationFillMode: "forwards",
@@ -138,11 +138,11 @@ const HowItWorks: React.FC = () => {
           </div>
 
           {/* Desktop */}
-          <div className="hidden md:flex md:flex-wrap md:justify-center">
+          <div className="hidden md:flex md:gap-10 md:flex-wrap md:justify-center">
             {steps.map((step) => (
               <div
                 key={step.id}
-                className="animate-fadeIn w-full translate-y-4 opacity-0 md:w-[calc(33%-1rem)] lg:max-w-xs"
+                className="animate-fadeIn w-full translate-y-4 opacity-0 md:max-w-52 lg:max-w-68"
                 style={{
                   animationDelay: `${step.id * 0.3}s`,
                   animationFillMode: "forwards",
