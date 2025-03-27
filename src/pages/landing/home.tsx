@@ -57,13 +57,13 @@ export default function HomeSection() {
               </div>
 
               <div className="lg:hidden">
-                <span className="bg-herta-400 absolute top-72 left-0 z-20 m-2 inline-block rounded-full px-6 py-2 text-sm text-white">
+                <span className="bg-herta-400 absolute top-72 left-0 z-20 m-2 inline-block rounded-full px-6 py-2 text-base text-white">
                   Instant Result
                 </span>
-                <span className="bg-herta-300 absolute top-56 right-0 z-20 m-2 inline-block rounded-full px-6 py-2 text-sm text-white">
+                <span className="bg-herta-300 absolute top-56 right-0 z-20 m-2 inline-block rounded-full px-6 py-2 text-base text-white">
                   Trusted Information
                 </span>
-                <span className="bg-herta-200 absolute -right-7 bottom-16 z-20 m-2 inline-block rounded-full px-6 py-2 text-sm text-white">
+                <span className="bg-herta-200 absolute -right-7 bottom-16 z-20 m-2 inline-block rounded-full px-6 py-2 text-base text-white">
                   Easy to Use
                 </span>
               </div>
@@ -80,12 +80,12 @@ export default function HomeSection() {
                   callToActionText="Try now"
                   callToActionLink="/"
                 />
-                <span className="bg-herta-400 absolute right-10 -bottom-5 z-10 inline-block rounded-full px-6 py-2 text-sm text-white">
+                <span className="bg-herta-400 absolute right-10 -bottom-5 z-10 inline-block rounded-full px-6 py-2 text-base text-white">
                   Instant Result
                 </span>
               </div>
             </div>
-            <div className="absolute top-36 -right-44">
+            <div className="absolute top-30 -right-50">
               <div className="relative w-[24rem]">
                 <CardFeature
                   title="Research Diseases Securely"
@@ -95,7 +95,7 @@ export default function HomeSection() {
                   className="!pb-10"
                 />
 
-                <span className="bg-herta-400 absolute -bottom-4 left-10 z-10 inline-block rounded-full px-6 py-2 text-sm text-white">
+                <span className="bg-herta-400 absolute -bottom-4 left-10 z-10 inline-block rounded-full px-6 py-2 text-base text-white">
                   Trusted Information
                 </span>
               </div>
@@ -109,7 +109,7 @@ export default function HomeSection() {
                   callToActionLink="/"
                 />
 
-                <span className="bg-herta-400 absolute right-10 -bottom-5 z-10 inline-block rounded-full px-6 py-2 text-sm text-white">
+                <span className="bg-herta-400 absolute right-10 -bottom-5 z-10 inline-block rounded-full px-6 py-2 text-base text-white">
                   Easy to Use
                 </span>
               </div>

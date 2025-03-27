@@ -98,7 +98,7 @@ const FieldDataProfile = ({
           disabled={!isEdit}
         />
         <button
-          className="text-herta-300 flex cursor-pointer items-center gap-2 text-sm"
+          className="text-herta-300 flex cursor-pointer items-center gap-2 text-base"
           onClick={
             setIsEdit as MouseEventHandler<HTMLButtonElement> | undefined
           }

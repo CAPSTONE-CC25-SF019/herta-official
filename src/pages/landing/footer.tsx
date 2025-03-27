@@ -24,7 +24,7 @@ export default function Footer() {
               <InstagramLogo size={34} weight="regular" />
             </a>
           </div>
-          <p className="text-sm text-center sm:self-center mt-[4rem]">&copy; 2025 HERTA. All rights reserved.</p>
+          <p className="text-base text-center sm:self-center mt-[4rem]">&copy; 2025 HERTA. All rights reserved.</p>
         </div>
       </footer>
     );

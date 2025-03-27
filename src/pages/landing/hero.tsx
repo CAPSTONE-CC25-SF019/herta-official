@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-herta-400 opacity-50 -z-2"></div>
       <div className="flex flex-col items-center justify-center flex-grow">
         <h1 className="text-white text-8xl sm:text-9xl font-bold">HERTA</h1>
-        <p className="text-white text-lg mt-4">Health Prediction & Analytic</p>
+        <p className="text-white text-lg mt-4 px-4 text-center w-full max-w-102">A website to predict and analyze your health easily using machine learning models</p>
         <div className="mt-8 flex space-x-4">
         <Button
           variant="none"

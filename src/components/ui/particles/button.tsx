@@ -36,7 +36,7 @@ export default function Button({
   ...props
 }: PropsButton) {
   const styles =
-    "w-fit cursor-pointer rounded-md px-5 py-2 text-sm disabled:cursor-progress disabled:brightness-80";
+    "w-fit cursor-pointer rounded-md px-5 py-2 text-base disabled:cursor-progress disabled:brightness-80";
   
   let color = "bg-gradient-to-tr from-herta-300 to-herta-400 text-white";
   if (variant === "none") color = "";
