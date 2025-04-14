@@ -6,30 +6,27 @@ import GradientRadial from "../../components/ui/particles/gradient-radial";
 
 export default function HomeSection() {
   return (
-    <section className="bg-herta-100 relative max-w-screen overflow-hidden">
-      <div className="mx-auto flex h-[69rem] w-full max-w-[600px] flex-col border-x-[1px] border-black/10 lg:h-[58rem] lg:border-0">
+    <section
+      className="bg-herta-100 relative max-w-screen overflow-hidden"
+      id="home"
+    >
+      <div className="mx-auto flex h-[69rem] w-full max-w-[600px] flex-col lg:h-[58rem] lg:border-0">
         <div className="relative mx-auto h-full w-full max-w-[600px]">
-          <div className="absolute top-0 mt-1 right-0 bottom-0 left-0 w-full space-y-2 p-4 lg:hidden">
+          <div className="absolute top-0 right-0 bottom-0 left-0 mt-1 w-full space-y-2 p-4 lg:hidden">
             <CardFeature
               title="AI Health Check"
               description="Get instant health assessments with our trusted AI technology. Try it
             now!"
               callToActionText="Try now"
-              callToActionLink="/"
-            />
-
-            <CardFeature
-              title="Research Diseases Securely"
-              description="Explore detailed information about diseases and symptoms. Search now!"
-              callToActionText="Search now"
-              callToActionLink="/"
+              callToActionLink="/disease"
+              // TODO: Change it with analytic link
             />
 
             <CardFeature
               title="Discover How It Works"
               description="Learn how our AI-driven platform can help you stay healthy. Check it out!"
               callToActionText="Check now"
-              callToActionLink="/"
+              callToActionLink="/#how-it-work"
             />
           </div>
         </div>
@@ -60,9 +57,6 @@ export default function HomeSection() {
                 <span className="bg-herta-400 absolute top-72 left-0 z-20 m-2 inline-block rounded-full px-6 py-2 text-base text-white">
                   Instant Result
                 </span>
-                <span className="bg-herta-300 absolute top-56 right-0 z-20 m-2 inline-block rounded-full px-6 py-2 text-base text-white">
-                  Trusted Information
-                </span>
                 <span className="bg-herta-200 absolute -right-7 bottom-16 z-20 m-2 inline-block rounded-full px-6 py-2 text-base text-white">
                   Easy to Use
                 </span>
@@ -78,25 +72,11 @@ export default function HomeSection() {
                   description="Get instant health assessments with our trusted AI technology. Try it
               now!"
                   callToActionText="Try now"
-                  callToActionLink="/"
+                  callToActionLink="/disease"
+                  // TODO: Change it with analytic link
                 />
                 <span className="bg-herta-400 absolute right-10 -bottom-5 z-10 inline-block rounded-full px-6 py-2 text-base text-white">
                   Instant Result
-                </span>
-              </div>
-            </div>
-            <div className="absolute top-30 -right-50">
-              <div className="relative w-[24rem]">
-                <CardFeature
-                  title="Research Diseases Securely"
-                  description="Explore detailed information about diseases and symptoms. Search now!"
-                  callToActionText="Search now"
-                  callToActionLink="/"
-                  className="!pb-10"
-                />
-
-                <span className="bg-herta-400 absolute -bottom-4 left-10 z-10 inline-block rounded-full px-6 py-2 text-base text-white">
-                  Trusted Information
                 </span>
               </div>
             </div>
@@ -106,7 +86,7 @@ export default function HomeSection() {
                   title="Discover How It Works"
                   description="Learn how our AI-driven platform can help you stay healthy. Check it out!"
                   callToActionText="Check now"
-                  callToActionLink="/"
+                  callToActionLink="/#how-it-work"
                 />
 
                 <span className="bg-herta-400 absolute right-10 -bottom-5 z-10 inline-block rounded-full px-6 py-2 text-base text-white">

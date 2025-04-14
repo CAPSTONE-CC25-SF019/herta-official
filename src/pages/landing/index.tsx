@@ -4,19 +4,22 @@ import Footer from "./footer";
 import Navbar from "../../components/ui/navbar";
 import HowItWorks from "./how-it-works";
 
-export default function LandingPage() {
-  const nav = [{
+const nav = [
+  {
     name: "Home",
-    link: "/"
+    link: "/#home",
   },
   {
-    name: "About",
-    link: "/about"
+    name: "Analytic",
+    link: "/#about",
   },
   {
-    name: "Disease",
-    link: "/disease"
-  }];
+    name: "History",
+    link: "/history",
+  },
+];
+
+export default function LandingPage() {
   return (
     <>
       <Hero />

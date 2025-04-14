@@ -1,39 +1,39 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from "react";
 
 interface UseStickyOptions {
   threshold?: number;
   thresholdRatio?: number;
 }
 
-export const useSticky = ({ 
-  threshold, 
-  thresholdRatio = 1 
+export const useSticky = ({
+  threshold,
+  thresholdRatio = 1,
 }: UseStickyOptions = {}) => {
   const [isSticky, setIsSticky] = useState(false);
-  
+
   const actualThreshold = useMemo(() => {
     return threshold ?? window.innerHeight * thresholdRatio;
   }, [threshold, thresholdRatio]);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
-    
+
     const handleScroll = () => {
       if (timeoutId) return;
-      
+
       timeoutId = setTimeout(() => {
-        setIsSticky(window.scrollY > actualThreshold);
+        setIsSticky(window.scrollY > actualThreshold + 40);
         timeoutId = null;
       }, 100);
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    
+
+    window.addEventListener("scroll", handleScroll);
+
     handleScroll();
-    
+
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [actualThreshold]);
 

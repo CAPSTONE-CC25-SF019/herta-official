@@ -14,8 +14,9 @@ export default function LoginPage() {
       <div className="w-full max-w-[400px]">
         <Button
           variant="secondary"
-          type="link"
-          to="/"
+          type="hashlink"
+          to="/#home"
+          smooth={true}
           className="!flex gap-1 !pr-6 !pl-3"
         >
           <ChevronLeftIcon className="size-5" /> Back
