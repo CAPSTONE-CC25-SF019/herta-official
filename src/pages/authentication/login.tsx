@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import InputText from "../../components/ui/input-text";
 import Button from "../../components/ui/particles/button";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import useLogin from "../../hooks/useLogin";
+import { ChangeEventHandler, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function LoginPage() {
   // TODO: Notify User with Toast for better experience.
-  const onLoginHandler = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+  const { login, email, setEmail, password, setPassword } = useLogin();
+  const context = useContext(AuthContext);
+
+  if (context?.token) return <Navigate to="/" />;
 
   return (
     <section className="flex h-svh w-full flex-col items-center justify-center gap-2 p-2">
@@ -23,7 +27,7 @@ export default function LoginPage() {
       </div>
       <form
         className="bg-herta-150 w-full max-w-[400px] rounded-lg px-6 py-8 shadow-sm"
-        onSubmit={onLoginHandler}
+        onSubmit={login}
       >
         <header className="mb-10">
           <h1 className="mb-2 text-2xl">login</h1>
@@ -36,19 +40,24 @@ export default function LoginPage() {
             <InputText
               id="login"
               name="login"
-              label="Username or Email"
-              placeholder="e.g. username@example.com"
+              label="Email"
+              placeholder="e.g. user@example.com"
               autoComplete="username"
+              value={email as string}
+              onChange={setEmail as ChangeEventHandler<HTMLInputElement>}
             />
             {/* {errors?.username && <ErrorLabel error={errors?.username[0]} />} */}
           </div>
           <div className="space-y-2">
             <InputText
               id="password"
+              type="password"
               name="password"
               label="Password"
               placeholder="e.g. password1234"
               autoComplete="password"
+              value={password as string}
+              onChange={setPassword as ChangeEventHandler<HTMLInputElement>}
             />
             {/* {errors?.password && <ErrorLabel error={errors?.password[0]} />} */}
           </div>
