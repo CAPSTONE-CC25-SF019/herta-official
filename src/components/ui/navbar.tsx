@@ -73,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </Button>
           )}
 
-          <button
+          <Button
             className="rounded-full p-2 hover:bg-black/10 md:hidden"
             onClick={toggleMenu}
             aria-expanded={isOpen}
