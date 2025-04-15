@@ -23,7 +23,7 @@ export default function LandingPage() {
   return (
     <>
       <Hero />
-      <Navbar srcLogo="../../assets/navbar/logo.png" navItem={nav} />
+      <Navbar srcLogo="/src/assets/images/logo.png" navItem={nav} />
       <HomeSection />
       <HowItWorks />
       <Footer />
