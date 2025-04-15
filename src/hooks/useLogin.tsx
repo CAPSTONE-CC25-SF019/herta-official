@@ -12,12 +12,13 @@ export default function useLogin() {
   const login = async (e: FormEvent) => {
     e.preventDefault();
     try {
+      console.log("TEST");
       const response = await axiosClient.post("/api/v1/users/login", {
         email,
         password,
       });
       context?.setToken(response.data.data.accessToken);
-      console.log(context?.token);
+      
     } catch (error) {
       console.log(error);
     }

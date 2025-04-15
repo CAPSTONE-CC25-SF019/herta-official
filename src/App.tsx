@@ -11,6 +11,7 @@ import AuthProvider from "./contexts/AuthContext";
 function App() {
   // TODO: Implement Layout
   // TODO: Align each route
+  console.log(import.meta.env.VITE_BASE_API_URL);
   return (
     <AuthProvider>
       <BrowserRouter>

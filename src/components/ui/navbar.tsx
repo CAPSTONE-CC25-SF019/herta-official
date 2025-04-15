@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Button from "./particles/button";
 import MobileNavBar from "./mobile/mobile-navbar";
 import { useSticky } from "../../hooks/useSticky";
 import { useMobileMenu } from "../../hooks/useMobileMenu";
+import { AuthContext } from "../../contexts/AuthContext";
 
 interface NavItem {
   id?: number;
@@ -31,6 +32,8 @@ const Navbar: React.FC<NavbarProps> = ({
   });
 
   const { isOpen, toggleMenu, closeMenu } = useMobileMenu();
+  const context = useContext(AuthContext);
+  console.log(context?.token);
 
   const headerClasses = `w-full sticky z-50 transition-all duration-500 ease-in-out ${
     isSticky ? "top-1 flex justify-center" : "top-0"
@@ -62,9 +65,13 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         <div className="flex items-center justify-end">
-          <Button type="link" to="/register" className="max-md:hidden">
-            Sign In
-          </Button>
+          {context?.token ? (
+            <Link to="/history">History</Link>
+          ) : (
+            <Button type="link" to="/login" className="max-md:hidden">
+              Sign In
+            </Button>
+          )}
 
           <button
             className="rounded-full p-2 hover:bg-black/10 md:hidden"
@@ -77,7 +84,12 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
       </nav>
 
-      <MobileNavBar isOpen={isOpen} onClose={closeMenu} items={navItem} />
+      <MobileNavBar
+        isOpen={isOpen}
+        onClose={closeMenu}
+        items={navItem}
+        token={context?.token || ""}
+      />
     </header>
   );
 };

@@ -30,10 +30,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     const getAuthenticatedUser = async () => {
       try {
         const response = await axiosClient.get("/api/v1/users/profile");
-        const data = await response.data.user;
+        const data = await response.data.data;
+
         setUser(data);
       } catch {
-        setToken(null);
+        // setToken(null);
       }
     };
 
@@ -43,7 +44,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   useLayoutEffect(() => {
     const authInterceptor = axiosClient.interceptors.request.use((config) => {
       config.headers.Authorization =
-        token && !_apiRetry ? token : config.headers.Authorization;
+        token && !_apiRetry ? `Bearer ${token}` : config.headers.Authorization;
 
       return config;
     });
@@ -53,37 +54,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       _setApiRetry(false);
     };
   }, [token, _apiRetry]);
-
-  useLayoutEffect(() => {
-    const refreshInterceptor = axiosClient.interceptors.response.use(
-      (response) => response,
-      async (error) => {
-        const originalRequest = error.config;
-
-        if (
-          error.response.status === 401 && // Depend on error status and message
-          error.response.data.message === "Unauthenticated."
-        ) {
-          try {
-            const response = await axiosClient.get("/api/v1/refresh-token");
-            // setToken(response.data.accessToken);
-            console.log(response.data);
-
-            originalRequest.headers.Authorization = response.data.accessToken;
-            _setApiRetry(true);
-          } catch {
-            setToken(null);
-          }
-        }
-
-        return Promise.reject(error);
-      },
-    );
-
-    return () => {
-      axiosClient.interceptors.request.eject(refreshInterceptor);
-    };
-  }, []);
 
   const contextValue = useMemo(
     () => ({
