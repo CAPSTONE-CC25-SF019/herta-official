@@ -33,8 +33,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         const data = await response.data.data;
 
         setUser(data);
-      } catch {
-        // setToken(null);
+      } catch (error) {
+        if (error.status === 401) setToken(null);
       }
     };
 
