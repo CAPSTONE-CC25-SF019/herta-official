@@ -18,8 +18,9 @@ export default function LoginPage() {
       <div className="w-full max-w-[400px]">
         <Button
           variant="secondary"
-          type="link"
-          to="/"
+          type="hashlink"
+          to="/#home"
+          smooth={true}
           className="!flex gap-1 !pr-6 !pl-3"
         >
           <ChevronLeftIcon className="size-5" /> Back
@@ -31,7 +32,7 @@ export default function LoginPage() {
       >
         <header className="mb-10">
           <h1 className="mb-2 text-2xl">login</h1>
-          <p className="text-sm text-zinc-500">
+          <p className="text-base text-zinc-500">
             Welcome back! Please enter your login details.
           </p>
         </header>
@@ -68,7 +69,7 @@ export default function LoginPage() {
           </Button>
         </div>
         <footer className="mt-10">
-          <p className="text-center text-sm">
+          <p className="text-center text-base">
             Don{"'"}t have an a account?{" "}
             <Link className="text-herta-400 hover:underline" to="/register">
               Create your account

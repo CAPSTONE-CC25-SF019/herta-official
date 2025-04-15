@@ -14,8 +14,9 @@ export default function RegisterPage() {
       <div className="w-full max-w-[400px]">
         <Button
           variant="secondary"
-          type="link"
-          to="/"
+          type="hashlink"
+          to="/#home"
+          smooth={true}
           className="!flex gap-1 !pr-6 !pl-3"
         >
           <ChevronLeftIcon className="size-5" /> Back
@@ -27,7 +28,7 @@ export default function RegisterPage() {
       >
         <header className="mb-10">
           <h1 className="mb-2 text-2xl">Register</h1>
-          <p className="text-sm text-zinc-500">
+          <p className="text-base text-zinc-500">
             Hi, Welcome! Please enter your register details.
           </p>
         </header>
@@ -79,7 +80,7 @@ export default function RegisterPage() {
           </Button>
         </div>
         <footer className="mt-10">
-          <p className="text-center text-sm">
+          <p className="text-center text-base">
             Already have an a account?{" "}
             <Link className="text-herta-400 hover:underline" to="/login">
               Login

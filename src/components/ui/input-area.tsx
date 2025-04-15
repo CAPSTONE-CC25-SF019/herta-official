@@ -19,7 +19,7 @@ export default function InputTextArea({
     <div className="flex flex-col gap-1">
       <label htmlFor={id}>
         {label}{" "}
-        {labelRequired && <span className="text-sm text-red-600">*</span>}{" "}
+        {labelRequired && <span className="text-base text-red-600">*</span>}{" "}
       </label>
       <textarea
         name={id}

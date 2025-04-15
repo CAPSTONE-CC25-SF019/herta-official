@@ -1,6 +1,6 @@
 import { CheckBadgeIcon } from "@heroicons/react/24/outline";
 import GradientRadial from "../../../ui/particles/gradient-radial";
-import { Link } from "react-router-dom";
+import Button from "../../../ui/particles/button";
 
 interface CardFeatureProps {
   title: string;
@@ -28,14 +28,17 @@ export default function CardFeature({
         </div>
         <GradientRadial className="absolute -top-20 -right-16 m-auto !size-60 opacity-60" />
       </header>
-      <p className="text-herta-500/80 mb-8 w-64 text-sm">{description}</p>
-      <Link
+      <p className="text-herta-500/80 mb-8 w-64 text-base">{description}</p>
+      <Button
+        variant="none"
+        type="hashlink"
+        smooth={true}
         rel="stylesheet"
         to={callToActionLink}
-        className="bg-herta-300/10 text-herta-300 inline-block h-fit w-fit cursor-pointer rounded-md px-4 py-2 text-sm"
+        className="bg-herta-300/10 text-herta-300 inline-block h-fit w-fit cursor-pointer rounded-md px-4 py-2 text-base"
       >
         {callToActionText}
-      </Link>
+      </Button>
     </div>
   );
 }

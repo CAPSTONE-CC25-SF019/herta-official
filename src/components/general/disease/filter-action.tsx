@@ -9,7 +9,7 @@ export default function FilterAction() {
       <form>
         <input
           type="text"
-          className="rounded-md border-[1px] border-white bg-[#fafafa] px-4 py-3 text-sm shadow-sm"
+          className="rounded-md border-[1px] border-white bg-[#fafafa] px-4 py-3 text-base shadow-sm"
           placeholder="Search disease's name"
         />
       </form>

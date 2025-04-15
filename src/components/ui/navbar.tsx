@@ -50,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({
       <nav className={navClasses}>
         <div className="flex flex-grow items-center">
           <Link to="/" className="flex-shrink-0">
-            <img src={srcLogo} alt="Logo" className="mr-6" />
+            <img src={srcLogo} alt="Logo" className="max-w-18 mr-6" />
           </Link>
 
           <ul className="ml-6 flex space-x-6 max-md:hidden">
@@ -80,7 +80,7 @@ const Navbar: React.FC<NavbarProps> = ({
             aria-label="Toggle navigation menu"
           >
             <Bars3Icon className="size-6" />
-          </button>
+          </Button>
         </div>
       </nav>
 

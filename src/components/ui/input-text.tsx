@@ -15,14 +15,14 @@ export default function InputText({
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label className="text-sm" htmlFor={id}>
+        <label className="text-base" htmlFor={id}>
           {label} {labelRequired && <span className="text-red-600">*</span>}
         </label>
       )}
       <input
         id={id}
         {...props}
-        className="focus:ring-herta-300 focus:outline-herta-200 rounded-md border-[1px] border-zinc-200 px-3 py-2 text-sm focus:ring-2 focus:outline-1"
+        className="focus:ring-herta-300 focus:outline-herta-200 rounded-md border-[1px] border-zinc-200 px-3 py-2 text-base focus:ring-2 focus:outline-1"
       />
     </div>
   );

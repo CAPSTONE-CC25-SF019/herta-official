@@ -12,14 +12,18 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ card }) => {
   return (
-    <div className="h-full min-h-72 w-full max-w-56 bg-white p-4 shadow-[6px_6px_10px_rgba(0,0,0,0.2)] md:min-h-60 md:max-w-48 lg:min-h-80 lg:max-w-64 transition-all duration-300 hover:shadow-[8px_8px_15px_rgba(0,0,0,0.3)] hover:translate-y-1 group">
-      <div className="space-y-3">
-        <div className="text-black transition-transform duration-500 ease-in-out group-hover:scale-110">{card.icon}</div>
-        <span className="text-herta-gray text-sm font-bold transition-colors duration-300 group-hover:text-herta-500">{card.title}</span>
-        <h1 className="text-lg font-bold md:text-xl lg:text-2xl transition-colors duration-300 group-hover:text-herta-400">
+    <div className="group h-full min-h-72 bg-white p-6 shadow-sm transition-all duration-300 hover:translate-y-1 hover:shadow-md md:min-h-60 lg:min-h-80">
+      <div className="space-y-4 pb-12">
+        <div className="text-black transition-transform duration-500 ease-in-out group-hover:scale-105">
+          {card.icon}
+        </div>
+        <span className="text-herta-gray group-hover:text-herta-500 text-base text-sm font-semibold transition-colors duration-300">
+          {card.title}
+        </span>
+        <h1 className="group-hover:text-herta-400 text-lg font-bold transition-colors duration-300">
           {card.subtitle}
         </h1>
-        <p className="text-xs text-black md:text-sm lg:text-base transition-opacity duration-300 group-hover:opacity-90">
+        <p className="text-sm text-black text-zinc-500 transition-opacity duration-300 group-hover:opacity-90 md:text-base">
           {card.description}
         </p>
       </div>

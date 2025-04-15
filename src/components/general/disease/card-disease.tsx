@@ -28,7 +28,7 @@ export default function CardDisease({
       <div className="flex flex-col p-1">
         <div className="mb-2 h-full grow">
           <h2 className="line-clamp-2 py-1 text-2xl">{name}</h2>
-          <p className="line-clamp-2 text-sm text-zinc-600">{description}</p>
+          <p className="line-clamp-2 text-base text-zinc-600">{description}</p>
         </div>
         <div className="mt-2 flex gap-2">
           {tags.map((tag) => (
@@ -41,7 +41,7 @@ export default function CardDisease({
 }
 
 const TagDisease = ({ name }: { name: string }) => (
-  <span className="border-herta-400 text-herta-400 bg-herta-400/20 inline-block w-fit rounded-full border-[1px] px-4 py-[.1rem] text-sm leading-tight">
+  <span className="border-herta-400 text-herta-400 bg-herta-400/20 inline-block w-fit rounded-full border-[1px] px-4 py-[.1rem] text-base leading-tight">
     {name}
   </span>
 );
