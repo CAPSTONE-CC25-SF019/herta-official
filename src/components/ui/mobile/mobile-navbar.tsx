@@ -13,12 +13,14 @@ interface MobileNavBarProps {
   isOpen: boolean;
   onClose: () => void;
   items: NavItem[];
+  token?: string;
 }
 
 const MobileNavBar: React.FC<MobileNavBarProps> = ({
   isOpen,
   onClose,
   items,
+  token,
 }) => (
   <>
     <div
@@ -55,9 +57,13 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
             {item.name}
           </Link>
         ))}
-        <Button type="link" to="/login">
-          Sign In
-        </Button>
+        {token ? (
+          <Link to="/history">History</Link>
+        ) : (
+          <Button type="link" to="/login">
+            Sign In
+          </Button>
+        )}
       </div>
     </div>
   </>
