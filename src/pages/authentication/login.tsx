@@ -5,14 +5,14 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import useLogin from "../../hooks/useLogin";
 import { ChangeEventHandler, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import ErrorLabel from "../../components/general/forms/error-label";
 
 export default function LoginPage() {
-  // TODO: Notify User with Toast for better experience.
-  const { login, email, setEmail, password, setPassword } = useLogin();
+  const { login, email, setEmail, password, setPassword, isLoading, error } = useLogin();
   const context = useContext(AuthContext);
-
+  
   if (context?.token) return <Navigate to="/" />;
-
+  
   return (
     <section className="flex h-svh w-full flex-col items-center justify-center gap-2 p-2">
       <div className="w-full max-w-[400px]">
@@ -30,12 +30,19 @@ export default function LoginPage() {
         className="bg-herta-150 w-full max-w-[400px] rounded-lg px-6 py-8 shadow-sm"
         onSubmit={login}
       >
-        <header className="mb-10">
-          <h1 className="mb-2 text-2xl">login</h1>
+        <header className="mb-2">
+          <h1 className="mb-2 text-2xl">Login</h1>
           <p className="text-base text-zinc-500">
             Welcome back! Please enter your login details.
           </p>
         </header>
+        
+        {error && (
+          <div className="mb-4 rounded-md bg-red-50 p-3">
+            <ErrorLabel error={error} />
+          </div>
+        )}
+        
         <div className="space-y-4">
           <div className="space-y-2">
             <InputText
@@ -46,8 +53,8 @@ export default function LoginPage() {
               autoComplete="username"
               value={email as string}
               onChange={setEmail as ChangeEventHandler<HTMLInputElement>}
+              disabled={isLoading}
             />
-            {/* {errors?.username && <ErrorLabel error={errors?.username[0]} />} */}
           </div>
           <div className="space-y-2">
             <InputText
@@ -59,18 +66,22 @@ export default function LoginPage() {
               autoComplete="password"
               value={password as string}
               onChange={setPassword as ChangeEventHandler<HTMLInputElement>}
+              disabled={isLoading}
             />
-            {/* {errors?.password && <ErrorLabel error={errors?.password[0]} />} */}
           </div>
         </div>
         <div className="mt-12 flex justify-end">
-          <Button variant="primary" className="w-full">
-            Login
+          <Button 
+            variant="primary" 
+            className="w-full"
+            disabled={isLoading}
+          >
+            {isLoading ? "Logging in..." : "Login"}
           </Button>
         </div>
         <footer className="mt-10">
           <p className="text-center text-base">
-            Don{"'"}t have an a account?{" "}
+            Don{"'"}t have an account?{" "}
             <Link className="text-herta-400 hover:underline" to="/register">
               Create your account
             </Link>

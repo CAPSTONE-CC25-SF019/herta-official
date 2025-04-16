@@ -19,9 +19,9 @@ export default function CardHistory({ name, tags }: CardHistoryProps) {
           </div>
           <div className="flex flex-col">
             <span className="text-base text-zinc-600">Your Indication:</span>
-            <div className="mt-2 flex gap-2">
-              {tags.map((tag) => (
-                <TagHistory name={tag} />
+            <div className="mt-2 flex flex-wrap gap-2 max-w-fit">
+              {tags.map((tag, index) => (
+                <TagHistory key={index} name={tag} />
               ))}
             </div>
           </div>
@@ -32,7 +32,7 @@ export default function CardHistory({ name, tags }: CardHistoryProps) {
 }
 
 const TagHistory = ({ name }: { name: string }) => (
-  <span className="border-herta-400 text-herta-400 bg-herta-400/20 inline-block w-fit rounded-full border-[1px] px-4 py-[.1rem] text-base leading-tight">
+  <span className="border-herta-400 text-herta-400 bg-herta-400/20 inline-block min-w-fit rounded-full border-[1px] px-4 py-[.1rem] text-base leading-tight">
     {name}
   </span>
 );

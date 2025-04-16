@@ -11,7 +11,7 @@ const nav = [
   },
   {
     name: "Analytic",
-    link: "/#about",
+    link: "/health-analytic",
   },
   {
     name: "History",

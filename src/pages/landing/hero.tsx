@@ -19,7 +19,7 @@ export default function Hero() {
               type="hashlink"
               to="#how-it-work"
               smooth={true}
-              className="hover:text-herta-400 rounded-lg border border-white px-6 py-2 text-white transition hover:bg-white"
+              className="hover:text-herta-400 font-semibold rounded-lg border border-white px-6 py-2 text-white transition hover:bg-white"
             >
               How It Work
             </Button>
@@ -27,9 +27,9 @@ export default function Hero() {
               variant="none"
               type="link"
               to="/login"
-              className="text-herta-400 rounded-lg bg-white px-6 py-2 transition hover:opacity-80"
+              className="text-herta-400 font-semibold rounded-lg bg-white px-6 py-2 transition hover:opacity-80"
             >
-              Sign In
+              Get Started
             </Button>
           </div>
         </div>

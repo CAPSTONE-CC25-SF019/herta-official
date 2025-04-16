@@ -1,5 +1,9 @@
-import React from "react";
-
-export default function ErrorLabel({ error }: { error: string }) {
-  return <span className="text-base text-red-600">{error}</span>;
+interface ErrorLabelProps {
+  error: string;
 }
+
+const ErrorLabel: React.FC<ErrorLabelProps> = ({ error }) => {
+  return <p className="text-red-500">{error}</p>;
+};
+
+export default ErrorLabel;
