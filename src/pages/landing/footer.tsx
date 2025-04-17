@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { GithubLogo, YoutubeLogo, InstagramLogo } from "@phosphor-icons/react";
+import unlogo from "../../assets/images/unlogo.png"
 
 export default function Footer() {
     return (
@@ -13,7 +14,7 @@ export default function Footer() {
         </div>
         <div className="bg-herta-400 flex flex-col items-center sm:items-start space-y-3 p-10">
           <Link to="/">
-            <img src="/src/assets/images/unlogo.png" alt="Logo" className="max-w-38 sm:-ml-4" />
+            <img src={unlogo} alt="Logo" className="max-w-38 sm:-ml-4" />
           </Link>
           <p className="text-lg">Health Prediction & Analytic</p>
           <div className="flex space-x-4">

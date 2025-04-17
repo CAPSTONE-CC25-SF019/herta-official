@@ -3,6 +3,7 @@ import Navbar from "../../components/ui/navbar";
 import useCheckUser from "../../hooks/useCheckUser";
 import useSymptomDiagnosis from "../../hooks/useSymptomDiagnosis";
 import symptomsData from "../../libs/symptoms.json";
+import logo from "../../assets/images/logo.png"
 
 const SymptomInput = () => {
   const { isAuthenticated } = useCheckUser();
@@ -49,7 +50,7 @@ const SymptomInput = () => {
   return (
     <>
       <Navbar
-        srcLogo="/src/assets/images/logo.png"
+        srcLogo={logo}
         navItem={nav}
         stickyThreshold={-100}
       />

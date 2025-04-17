@@ -3,6 +3,7 @@ import CardHistory from "../../components/general/history/card-history";
 import Navbar from "../../components/ui/navbar";
 import useCheckUser from "../../hooks/useCheckUser";
 import useDiagnosisHistory from "../../hooks/useDiagnosisHistory";
+import logo from "../../assets/images/logo.png"
 
 const nav = [
   {
@@ -32,7 +33,7 @@ export default function HistoryPage() {
   return (
     <>
       <Navbar
-        srcLogo="/src/assets/images/logo.png"
+        srcLogo={logo}
         navItem={nav}
         stickyThreshold={-100}
       />

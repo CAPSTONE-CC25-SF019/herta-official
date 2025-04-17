@@ -3,6 +3,7 @@ import HomeSection from "./home";
 import Footer from "./footer";
 import Navbar from "../../components/ui/navbar";
 import HowItWorks from "./how-it-works";
+import logo from "../../assets/images/logo.png"
 
 const nav = [
   {
@@ -23,7 +24,7 @@ export default function LandingPage() {
   return (
     <>
       <Hero />
-      <Navbar srcLogo="/src/assets/images/logo.png" navItem={nav} />
+      <Navbar srcLogo={logo} navItem={nav} />
       <HomeSection />
       <HowItWorks />
       <Footer />
