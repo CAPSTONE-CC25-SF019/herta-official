@@ -18,8 +18,7 @@ export default function HomeSection() {
               description="Get instant health assessments with our trusted AI technology. Try it
             now!"
               callToActionText="Try now"
-              callToActionLink="/disease"
-              // TODO: Change it with analytic link
+              callToActionLink="/health-analytic"
             />
 
             <CardFeature

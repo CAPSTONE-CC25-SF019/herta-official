@@ -1,91 +1,77 @@
-// health-analytic/index.tsx
-import { useState, useRef } from 'react';
-import Navbar from '../../components/ui/navbar';
+import { useEffect, useState } from "react";
+import Navbar from "../../components/ui/navbar";
+import useCheckUser from "../../hooks/useCheckUser";
+import useSymptomDiagnosis from "../../hooks/useSymptomDiagnosis";
+import symptomsData from "../../libs/symptoms.json";
 
 const SymptomInput = () => {
+  const { isAuthenticated } = useCheckUser();
+  const allSuggestions = symptomsData.symptoms;
+  const [showAllSymptoms, setShowAllSymptoms] = useState(false);
+
+  const INITIAL_SYMPTOM_COUNT = 8;
+  const displayedSymptoms = showAllSymptoms
+    ? allSuggestions
+    : allSuggestions.slice(0, INITIAL_SYMPTOM_COUNT);
+
+  const {
+    input,
+    selectedItems,
+    suggestions,
+    isLoading,
+    error,
+    disease,
+    confidence,
+    inputRef,
+    handleInputChange,
+    handleSuggestionClick,
+    handleRemoveItem,
+    handleKeyDown,
+    handleCheck,
+  } = useSymptomDiagnosis(allSuggestions);
+
   const nav = [
-    { name: "Home", link: "/#home" },
-    { name: "Analytic", link: "/#about" },
+    { name: "Home", link: "/" },
+    { name: "Analytic", link: "/health-analytic" },
     { name: "History", link: "/history" },
   ];
 
-  // Example data for suggestions
-  const allSuggestions = ['Stroke', 'Cough', 'Fever', 'Headache', 'Nausea', 'Dizziness', 'Fatigue', 'Pain'];
-  
-  // Simple state management - no custom hooks
-  const [input, setInput] = useState('');
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // Handle input change
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInput(value);
-    
-    // Filter suggestions based on input
-    if (value.trim() === '') {
-      setSuggestions([]);
-    } else {
-      const filtered = allSuggestions.filter(
-        item => item.toLowerCase().includes(value.toLowerCase()) && !selectedItems.includes(item)
-      );
-      setSuggestions(filtered);
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return;
     }
-  };
+  }, [isAuthenticated]);
 
-  // Handle suggestion click
-  const handleSuggestionClick = (suggestion: string) => {
-    if (!selectedItems.includes(suggestion)) {
-      setSelectedItems([...selectedItems, suggestion]);
-      setInput('');
-      setSuggestions([]);
-      
-      // Focus input after selection
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 0);
-    }
-  };
-
-  // Handle removing an item
-  const handleRemoveItem = (item: string) => {
-    setSelectedItems(selectedItems.filter(selectedItem => selectedItem !== item));
-  };
-
-  // Handle key press
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && input.trim() !== '' && suggestions.length > 0) {
-      e.preventDefault();
-      handleSuggestionClick(suggestions[0]);
-    }
-  };
-
-  // Handle check button click
-  const handleCheck = () => {
-    console.log('Checking symptoms:', selectedItems);
-    // Here you would implement your check logic
+  const toggleSymptomDisplay = () => {
+    setShowAllSymptoms(!showAllSymptoms);
   };
 
   return (
     <>
-      <Navbar srcLogo="/src/assets/images/logo.png" navItem={nav} stickyThreshold={-100} />
-      <div className="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow-sm">
-        <h2 className="text-2xl font-bold mb-4">Health Symptom Analyzer</h2>
-        <p className="mb-4 text-gray-600">Enter your symptoms below or select from common symptoms to get an analysis.</p>
-        
+      <Navbar
+        srcLogo="/src/assets/images/logo.png"
+        navItem={nav}
+        stickyThreshold={-100}
+      />
+      <div className="mx-auto my-8 max-w-4xl rounded-lg bg-white p-6 shadow-sm">
+        <h2 className="mb-4 text-2xl font-bold">Health Symptom Analyzer</h2>
+        <p className="mb-4 text-gray-600">
+          Enter your symptoms below or select from common symptoms to get an
+          analysis.
+        </p>
+
         <div className="relative mb-4">
-          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-            <div className="flex flex-wrap gap-2 p-2 w-full">
+          <div className="flex items-center overflow-hidden rounded-lg border border-gray-300">
+            <div className="flex w-full flex-wrap gap-2 p-2">
               {selectedItems.map((item, index) => (
-                <span 
-                  key={index} 
-                  className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm flex items-center"
+                <span
+                  key={index}
+                  className="bg-herta-400 flex items-center rounded-full px-3 py-1 text-sm text-white"
                 >
                   {item}
                   <button
                     onClick={() => handleRemoveItem(item)}
-                    className="ml-2 text-white font-bold"
+                    className="ml-2 font-bold text-white"
                     type="button"
                   >
                     &times;
@@ -98,18 +84,18 @@ const SymptomInput = () => {
                 value={input}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
-                className="flex-grow outline-none p-2 min-w-[200px]"
+                className="min-w-[200px] flex-grow p-2 outline-none"
                 placeholder="Insert your symptoms..."
               />
             </div>
           </div>
-          
+
           {suggestions.length > 0 && (
-            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-lg max-h-60 overflow-y-auto">
+            <div className="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-gray-300 bg-white shadow-lg">
               {suggestions.map((suggestion, index) => (
                 <div
                   key={index}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                   onClick={() => handleSuggestionClick(suggestion)}
                 >
                   {suggestion}
@@ -118,31 +104,110 @@ const SymptomInput = () => {
             </div>
           )}
         </div>
-        
-        <div className="flex flex-wrap gap-2 mb-6">
-          <p className="w-full mb-2 text-sm text-gray-500">Common symptoms:</p>
-          {allSuggestions.map((suggestion, index) => (
+
+        <div className="mb-6">
+          <div className="mb-2 flex items-center justify-between">
+            <p className="text-sm text-gray-500">Common symptoms:</p>
             <button
-              type="button"
-              key={index}
-              className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm hover:bg-blue-200 transition-colors"
-              onClick={() => handleSuggestionClick(suggestion)}
+              onClick={toggleSymptomDisplay}
+              className="text-herta-400 hover:text-herta-500 text-sm hover:underline"
             >
-              {suggestion}
+              {showAllSymptoms ? "Show less" : "Show more"}
             </button>
-          ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {displayedSymptoms.map((suggestion, index) => (
+              <button
+                type="button"
+                key={index}
+                className={`rounded-full px-4 py-2 text-sm transition-colors ${
+                  selectedItems.includes(suggestion)
+                    ? "bg-herta-400 hover:bg-herta-500 text-white"
+                    : "bg-herta-200/30 text-herta-500 hover:bg-herta-300/50"
+                }`}
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
+                {suggestion}
+              </button>
+            ))}
+          </div>
         </div>
-        
+
+        {error && (
+          <div className="mb-4 rounded-md bg-red-100 p-4 text-red-700">
+            {error}
+          </div>
+        )}
+
         <div className="flex justify-end">
           <button
             type="button"
             onClick={handleCheck}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-            disabled={selectedItems.length === 0}
+            className="bg-herta-400 hover:bg-herta-500 rounded-md px-6 py-2 text-white transition-colors disabled:cursor-not-allowed disabled:bg-gray-300"
+            disabled={selectedItems.length === 0 || isLoading}
           >
-            {selectedItems.length === 0 ? "Select symptoms first" : "Check Symptoms"}
+            {isLoading
+              ? "Processing..."
+              : selectedItems.length === 0
+                ? "Select symptoms first"
+                : "Check Symptoms"}
           </button>
         </div>
+
+        {/* Disease Result Card */}
+        {disease && (
+          <div className="mt-8 rounded-lg border border-gray-200 bg-white p-6 shadow-md">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-bold text-gray-800 capitalize">
+                {disease.name}
+              </h3>
+              {confidence !== null && (
+                <span className="bg-herta-100 text-herta-500 rounded-full px-3 py-1 text-sm font-medium">
+                  {confidence}% confidence
+                </span>
+              )}
+            </div>
+
+            {disease.description && (
+              <p className="mt-4 text-gray-600">{disease.description}</p>
+            )}
+
+            <div className="mt-6">
+              <h4 className="mb-2 font-semibold text-gray-700">
+                Associated Symptoms:
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {disease.symptoms.map((item, index) => (
+                  <span
+                    key={index}
+                    className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700"
+                  >
+                    {item.symptom.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {disease.image && (
+              <div className="mt-4">
+                <img
+                  src={disease.image}
+                  alt={`Image of ${disease.name}`}
+                  className="mx-auto h-48 w-auto rounded-md object-cover"
+                />
+              </div>
+            )}
+
+            <div className="mt-6 border-t border-gray-200 pt-4">
+              <p className="text-sm text-gray-500">
+                This analysis is based on the symptoms you provided and should
+                not replace professional medical advice. Please consult with a
+                healthcare provider for proper diagnosis and treatment.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
