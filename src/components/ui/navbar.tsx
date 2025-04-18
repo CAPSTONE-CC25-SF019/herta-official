@@ -41,14 +41,15 @@ const Navbar: React.FC<NavbarProps> = ({
   const { token, user, logout } = auth;
   const isLoggedIn = !!token && !!user;
 
-  const headerClasses = `w-full sticky z-50 transition-all duration-500 ease-in-out ${
+  const headerClasses = `w-full sticky z-50 transition-all duration-500 ease-in-out contain-layout ${
     isSticky ? "top-1 flex justify-center" : "top-0"
   } ${className}`;
-  const navClasses = `transition-all duration-500 ease-in-out ${
+  
+  const navClasses = `transition-all duration-500 ease-in-out h-[64px] ${
     isSticky
-      ? "bg-white rounded-lg mt-5 w-full max-w-[800px] mx-2 shadow-md h-18"
-      : "bg-herta-100 h-22"
-  } flex items-center justify-between px-8 py-4`;
+      ? "bg-white rounded-lg mt-5 w-full max-w-[800px] mx-2 shadow-md"
+      : "bg-herta-100"
+  } flex items-center justify-between px-8`;
 
   const handleLogout = async (e: React.MouseEvent) => {
     e.preventDefault();

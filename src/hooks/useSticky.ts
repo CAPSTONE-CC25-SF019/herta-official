@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface UseStickyOptions {
   threshold?: number;
@@ -10,32 +10,71 @@ export const useSticky = ({
   thresholdRatio = 1,
 }: UseStickyOptions = {}) => {
   const [isSticky, setIsSticky] = useState(false);
-
-  const actualThreshold = useMemo(() => {
-    return threshold ?? window.innerHeight * thresholdRatio;
-  }, [threshold, thresholdRatio]);
+  const scrollTimeout = useRef<number | null>(null);
+  const lastSetValue = useRef<boolean>(false);
 
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const actualThreshold =
+      threshold !== undefined ? threshold : window.innerHeight * thresholdRatio;
+
+    const buffer = 50;
 
     const handleScroll = () => {
-      if (timeoutId) return;
+      if (scrollTimeout.current) {
+        window.cancelAnimationFrame(scrollTimeout.current);
+      }
 
-      timeoutId = setTimeout(() => {
-        setIsSticky(window.scrollY > actualThreshold + 40);
-        timeoutId = null;
-      }, 100);
+      scrollTimeout.current = window.requestAnimationFrame(() => {
+        const shouldBeSticky = window.scrollY > actualThreshold;
+
+        if (shouldBeSticky !== lastSetValue.current) {
+          if (
+            (shouldBeSticky && window.scrollY > actualThreshold + buffer) ||
+            (!shouldBeSticky && window.scrollY < actualThreshold - buffer)
+          ) {
+            setIsSticky(shouldBeSticky);
+            lastSetValue.current = shouldBeSticky;
+          }
+        }
+      });
+      let scrollTimer: number | null = null;
+      const header = document.querySelector("header");
+
+      const onScroll = () => {
+        if (header) {
+          header.classList.add("no-scroll-animation");
+
+          if (scrollTimer !== null) {
+            clearTimeout(scrollTimer);
+          }
+
+          scrollTimer = setTimeout(() => {
+            header.classList.remove("no-scroll-animation");
+          }, 150) as unknown as number;
+        }
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        if (scrollTimer !== null) {
+          clearTimeout(scrollTimer);
+        }
+      };
     };
-
-    window.addEventListener("scroll", handleScroll);
 
     handleScroll();
 
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (scrollTimeout.current) {
+        window.cancelAnimationFrame(scrollTimeout.current);
+      }
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [actualThreshold]);
+  }, [threshold, thresholdRatio]);
 
   return isSticky;
 };
