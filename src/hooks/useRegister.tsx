@@ -3,6 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import useInput from "./useInput";
 import { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface ErrorDetail {
   message: string;
@@ -25,6 +26,8 @@ interface ValidationErrors {
   email?: string[];
   password?: string[];
   password_confirmation?: string[];
+  age?: string[];
+  gender?: string[];
 }
 
 export default function useRegister() {
@@ -39,6 +42,8 @@ export default function useRegister() {
   const [generalError, setGeneralError] = useState<string | null>(null);
   
   const context = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const register = async (e: FormEvent) => {
     e.preventDefault();
@@ -86,7 +91,6 @@ export default function useRegister() {
         email,
         username,
         password,
-        password_confirmation: passwordConfirmation,
         age,
         gender,
       });
@@ -130,6 +134,7 @@ export default function useRegister() {
       }
     } finally {
       setIsLoading(false);
+      navigate("/login");
     }
   };
 

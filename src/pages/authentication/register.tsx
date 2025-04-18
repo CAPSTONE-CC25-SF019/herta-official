@@ -1,9 +1,10 @@
+// register.tsx
 import { Link, Navigate } from "react-router-dom";
 import InputText from "../../components/ui/input-text";
 import Button from "../../components/ui/particles/button";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import useRegister from "../../hooks/useRegister";
-import { ChangeEventHandler, useContext } from "react";
+import { ChangeEvent, ChangeEventHandler, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import ErrorLabel from "../../components/general/forms/error-label";
 
@@ -18,12 +19,34 @@ export default function RegisterPage() {
     setPassword,
     passwordConfirmation,
     setPasswordConfirmation,
+    age,
+    setAge,
+    gender,
+    setGender,
     isLoading,
     errors,
     generalError
   } = useRegister();
   
   const context = useContext(AuthContext);
+  
+  // Custom handler for gender selection
+  const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    // Create a synthetic event that mimics an input change event
+    const syntheticEvent = {
+      target: {
+        value: e.target.value
+      },
+      currentTarget: {
+        value: e.target.value
+      },
+      preventDefault: () => {},
+      stopPropagation: () => {}
+    } as unknown as ChangeEvent<HTMLInputElement>;
+    
+    // Pass this synthetic event to setGender
+    setGender(syntheticEvent);
+  };
   
   // Redirect if already logged in
   if (context?.token) return <Navigate to="/" />;
@@ -115,6 +138,42 @@ export default function RegisterPage() {
               disabled={isLoading}
             />
             {errors?.password_confirmation && <ErrorLabel error={errors.password_confirmation[0]} />}
+          </div>
+          
+          {/* Age field */}
+          <div className="space-y-2">
+            <InputText
+              id="age"
+              name="age"
+              type="number"
+              label="Age"
+              placeholder="e.g. 25"
+              value={age as string}
+              onChange={setAge as ChangeEventHandler<HTMLInputElement>}
+              disabled={isLoading}
+              min="0"
+            />
+            {errors?.age && <ErrorLabel error={errors.age[0]} />}
+          </div>
+          
+          {/* Gender field - simplified to just male/female */}
+          <div className="space-y-2">
+            <label htmlFor="gender" className="block text-sm font-medium">
+              Gender
+            </label>
+            <select
+              id="gender"
+              name="gender"
+              value={gender as string}
+              onChange={handleGenderChange}
+              disabled={isLoading}
+              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-herta-400 focus:outline-none focus:ring-1 focus:ring-herta-400"
+            >
+              <option value="">Select gender</option>
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
+            </select>
+            {errors?.gender && <ErrorLabel error={errors.gender[0]} />}
           </div>
         </div>
         
