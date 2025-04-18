@@ -47,14 +47,12 @@ export default function useLogin() {
       console.error("Login error:", err);
       const error = err as AxiosError<ErrorResponse>;
       if (error.response) {
-        // Handle 404 Not Found
         if (error.response.status === 404) {
           setError(
             error.response.data?.errors?.[0]?.detail.message || 
             "User not found"
           );
         } 
-        // Handle 400 Bad Request
         else if (error.response.status === 400) {
           setError(
             error.response.data?.errors?.[0]?.detail.message || 
@@ -67,7 +65,6 @@ export default function useLogin() {
             "Email or password wrong"
           );
         }
-        // Handle other error statuses
         else {
           setError(
             error.response.data?.errors?.[0]?.detail.message || 

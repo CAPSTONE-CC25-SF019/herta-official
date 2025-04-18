@@ -46,7 +46,6 @@ export default function useRegister() {
     setErrors(null);
     setGeneralError(null);
 
-    // Client-side validation
     const newErrors: ValidationErrors = {};
     let hasErrors = false;
 
@@ -92,7 +91,6 @@ export default function useRegister() {
         gender,
       });
       
-      // Set token after successful registration
       const accessToken = response.data.data.accessToken;
       context?.setToken(accessToken);
       localStorage.setItem('token', accessToken);
@@ -102,11 +100,9 @@ export default function useRegister() {
       const error = err as AxiosError<ErrorResponse>;
       
       if (error.response) {
-        // Handle validation errors (usually 422)
         if (error.response.status === 422) {
           const serverErrors: ValidationErrors = {};
           
-          // Parse server validation errors
           error.response.data?.errors?.forEach((errorItem) => {
             const field = errorItem.detail.path as keyof ValidationErrors;
             if (field) {
@@ -119,7 +115,6 @@ export default function useRegister() {
           
           setErrors(serverErrors);
         } 
-        // Handle other specific errors
         else if (error.response.status === 409) {
           setGeneralError("Email or username already exists");
         } else {
