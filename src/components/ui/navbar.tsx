@@ -41,11 +41,11 @@ const Navbar: React.FC<NavbarProps> = ({
   const { token, user, logout } = auth;
   const isLoggedIn = !!token && !!user;
 
-  const headerClasses = `w-full sticky z-50 transition-all duration-500 ease-in-out contain-layout ${
+  const headerClasses = `w-full sticky z-50 transition-transform duration-300 ease-in-out contain-layout ${
     isSticky ? "top-1 flex justify-center" : "top-0"
   } ${className}`;
   
-  const navClasses = `transition-all duration-500 ease-in-out h-[64px] ${
+  const navClasses = `transition-all duration-300 ease-in-out h-[64px] will-change-transform ${
     isSticky
       ? "bg-white rounded-lg mt-5 w-full max-w-[800px] mx-2 shadow-md"
       : "bg-herta-100"

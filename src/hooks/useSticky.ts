@@ -12,19 +12,19 @@ export const useSticky = ({
   const [isSticky, setIsSticky] = useState(false);
   const scrollTimeout = useRef<number | null>(null);
   const lastSetValue = useRef<boolean>(false);
+  const scrollTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const actualThreshold =
       threshold !== undefined ? threshold : window.innerHeight * thresholdRatio;
-
     const buffer = 50;
 
     const handleScroll = () => {
       if (scrollTimeout.current) {
-        window.cancelAnimationFrame(scrollTimeout.current);
+        cancelAnimationFrame(scrollTimeout.current);
       }
 
-      scrollTimeout.current = window.requestAnimationFrame(() => {
+      scrollTimeout.current = requestAnimationFrame(() => {
         const shouldBeSticky = window.scrollY > actualThreshold;
 
         if (shouldBeSticky !== lastSetValue.current) {
@@ -36,41 +36,30 @@ export const useSticky = ({
             lastSetValue.current = shouldBeSticky;
           }
         }
-      });
-      let scrollTimer: number | null = null;
-      const header = document.querySelector("header");
 
-      const onScroll = () => {
+        const header = document.querySelector("header");
         if (header) {
           header.classList.add("no-scroll-animation");
 
-          if (scrollTimer !== null) {
-            clearTimeout(scrollTimer);
+          if (scrollTimer.current) {
+            clearTimeout(scrollTimer.current);
           }
 
-          scrollTimer = setTimeout(() => {
+          scrollTimer.current = window.setTimeout(() => {
             header.classList.remove("no-scroll-animation");
-          }, 150) as unknown as number;
+          }, 150);
         }
-      };
-
-      window.addEventListener("scroll", onScroll, { passive: true });
-
-      return () => {
-        window.removeEventListener("scroll", onScroll);
-        if (scrollTimer !== null) {
-          clearTimeout(scrollTimer);
-        }
-      };
+      });
     };
-
-    handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       if (scrollTimeout.current) {
-        window.cancelAnimationFrame(scrollTimeout.current);
+        cancelAnimationFrame(scrollTimeout.current);
+      }
+      if (scrollTimer.current) {
+        clearTimeout(scrollTimer.current);
       }
       window.removeEventListener("scroll", handleScroll);
     };
