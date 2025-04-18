@@ -8,15 +8,12 @@ export default function ProfilePage() {
   const {
     username,
     email,
-    phoneNumber,
     setUsername,
     setEmail,
-    setPhoneNumber,
   } = useProfileInput({});
 
   const [isUsernameEdit, setIsUsernameEdit] = useCheck();
   const [isEmailEdit, setIsEmailEdit] = useCheck();
-  const [isPhoneNumberEdit, setIsPhoneNumberEdit] = useCheck();
 
   return (
     <section className="flex h-svh w-full flex-col items-center justify-center gap-10">
@@ -37,14 +34,6 @@ export default function ProfilePage() {
           onChange={setEmail}
           isEdit={isEmailEdit}
           setIsEdit={setIsEmailEdit}
-        />
-        <FieldDataProfile
-          title="Phone Number"
-          placeholder="+62821-8820-3992"
-          value={phoneNumber}
-          onChange={setPhoneNumber}
-          isEdit={isPhoneNumberEdit}
-          setIsEdit={setIsPhoneNumberEdit}
         />
       </div>
     </section>

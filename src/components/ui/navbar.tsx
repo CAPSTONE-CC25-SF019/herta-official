@@ -27,8 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({
   stickyThreshold,
 }) => {
   const isSticky = useSticky({
-    threshold: stickyThreshold,
-    thresholdRatio: 1,
+    threshold: stickyThreshold
   });
   const { isOpen, toggleMenu, closeMenu } = useMobileMenu();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -41,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const { token, user, logout } = auth;
   const isLoggedIn = !!token && !!user;
 
-  const headerClasses = `w-full sticky z-50 transition-transform duration-300 ease-in-out contain-layout ${
+  const headerClasses = `w-full sticky z-50 transition-transform duration-300 ease-in-out ${
     isSticky ? "top-1 flex justify-center" : "top-0"
   } ${className}`;
   
