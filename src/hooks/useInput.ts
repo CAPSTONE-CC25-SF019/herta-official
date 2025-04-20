@@ -9,15 +9,19 @@ type UseInputReturn = [
 const useInput = (initialValue: string = ''): UseInputReturn => {
   const [value, setValue] = useState<string>(initialValue);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | string) => {
+    if (typeof e === 'string') {
+      setValue(e);
+    } else {
+      setValue(e.target.value);
+    }
   };
 
   const resetValue = (newValue: string) => {
     setValue(newValue);
   };
 
-  return [value, handleChange, resetValue];
+  return [value, handleChange, resetValue] as const;
 };
 
 export default useInput;

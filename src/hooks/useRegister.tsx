@@ -26,7 +26,6 @@ interface ValidationErrors {
   email?: string[];
   password?: string[];
   password_confirmation?: string[];
-  age?: string[];
   gender?: string[];
 }
 
@@ -35,7 +34,6 @@ export default function useRegister() {
   const [username, setUsername] = useInput();
   const [password, setPassword] = useInput();
   const [passwordConfirmation, setPasswordConfirmation] = useInput();
-  const [age, setAge] = useInput();
   const [gender, setGender] = useInput();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<ValidationErrors | null>(null);
@@ -91,7 +89,6 @@ export default function useRegister() {
         email,
         username,
         password,
-        age,
         gender,
       });
       
@@ -148,8 +145,6 @@ export default function useRegister() {
     setPassword,
     passwordConfirmation,
     setPasswordConfirmation,
-    age,
-    setAge,
     gender,
     setGender,
     isLoading,

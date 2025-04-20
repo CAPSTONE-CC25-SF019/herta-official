@@ -1,4 +1,3 @@
-// register.tsx
 import { Link, Navigate } from "react-router-dom";
 import InputText from "../../components/ui/input-text";
 import Button from "../../components/ui/particles/button";
@@ -19,8 +18,6 @@ export default function RegisterPage() {
     setPassword,
     passwordConfirmation,
     setPasswordConfirmation,
-    age,
-    setAge,
     gender,
     setGender,
     isLoading,
@@ -43,12 +40,10 @@ export default function RegisterPage() {
       preventDefault: () => {},
       stopPropagation: () => {}
     } as unknown as ChangeEvent<HTMLInputElement>;
-    
-    // Pass this synthetic event to setGender
+
     setGender(syntheticEvent);
   };
   
-  // Redirect if already logged in
   if (context?.token) return <Navigate to="/" />;
   
   return (
@@ -138,22 +133,6 @@ export default function RegisterPage() {
               disabled={isLoading}
             />
             {errors?.password_confirmation && <ErrorLabel error={errors.password_confirmation[0]} />}
-          </div>
-          
-          {/* Age field */}
-          <div className="space-y-2">
-            <InputText
-              id="age"
-              name="age"
-              type="number"
-              label="Age"
-              placeholder="e.g. 25"
-              value={age as string}
-              onChange={setAge as ChangeEventHandler<HTMLInputElement>}
-              disabled={isLoading}
-              min="0"
-            />
-            {errors?.age && <ErrorLabel error={errors.age[0]} />}
           </div>
           
           {/* Gender field - simplified to just male/female */}
