@@ -24,7 +24,7 @@ yarn dev
 npm dev
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+Open http://localhost:5173 with your browser to see the result.
 
 ## Our Features
 
@@ -56,4 +56,4 @@ Open http://localhost:3000 with your browser to see the result.
 
 ## Deploy on Vercel
 
-You can access this capstone project in ...
+You can access this capstone project in [https://herta-official.vercel.app](https://herta-official.vercel.app)
